@@ -1,0 +1,43 @@
+Tasks
+Task 1: Aug 12,: Ansible
+1. Prepare two linux machines.
+2. Configure ip and hostnames for each machines
+A. ansible-host
+B. web1.demo.com
+3. Configure machines such that they can communicate with the hostname. E.g if i run ping
+web1.demo.com staying in ansible-host, the machine must be reachable.
+4. Configure key based ssh connection
+5. Install ansible package in ansible-host machine
+
+Task2: Aug 13
+1. Prepare centos8 machine as the ansible remote host
+2. Create inventory file
+3. Install apache in the remote centos8 machine, the apache service should be started and
+the service must start automatically in the next boot.
+4. Deploy the following index.html page and the image should also load.
+https://github.com/srtimsina/devops-techaxis/tree/main
+
+Task3: Aug 14
+Write an ansible playbook to perform following tasks.
+1. Install mysql package on remote ubuntu server, start the service and the service must
+start on next boot.
+2. Create a database named “devopsdb”.
+3. Add the user “devops” in the database, put password “devops@123”. The user “devops”
+should have all access to the database “devopsdb”
+
+Task4: Aug 17
+1. Write an ansible playbook to install the following packages in the remote system if the system is CentOS, use ansible loop. Provide the list within the playbook.
+A. git
+B. wget
+C. httpd D. curl
+E. chrony
+2. Write ansible playbook to add following users in remote system, use ansible loop, provide the list in the group_vars list, the user should be the member of devops group. A. student1
+B. student2
+C. student3
+D. student4
+
+Task5:
+4. Using ansible templates, update the ntp server details with following in remote hosts.
+server 0.asia.pool.ntp.org server 1.asia.pool.ntp.org server 2.asia.pool.ntp.org server 3.asia.pool.ntp.org
+5. Add the ssh banner in the remote hosts with the following contents, the sshd service should restart only if there is change in the sshd_config. Hintz use ansible handlers
+This {{ansible_distribution}} is managed by Ansible

@@ -1,0 +1,14 @@
+---
+- name: updating chronyd service configfiles
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Deploy chrony config file for CentOS
+      template:
+        src: templates/chrony-redhat.conf.j2
+        dest: /etc/chrony.conf
+    - name: Restart chronyd service on CentOS
+      service:
+        name: chronyd
+        state: restarted
+        enabled: yes

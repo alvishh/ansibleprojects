@@ -1,0 +1,12 @@
+[dbserver]
+dbhost ansible_host=192.168.54.152 ansible_ssh_user=vagrant
+
+[webservers]
+web1 ansible_host=192.168.54.25 ansible_ssh_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
+[allservers:children]
+webservers
+dbserver
+
+[dbserver:vars]
+ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa

@@ -1,0 +1,17 @@
+---
+- name: Add users to the system in the Devops group.
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Devops group declaration
+      group:
+        name: devops
+        state: present
+
+    - name: Add users to the system in the group.
+      user:
+        name: "{{item}}"
+        state: present
+        groups: devops
+        append: yes
+      loop: "{{users_list}}"

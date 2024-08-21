@@ -1,0 +1,16 @@
+---
+- name: Installation of Packages
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install required packages
+      yum:
+        name: "{{item}}"
+        state: present
+      when: ansible_distribution == "CentOS"
+      loop:
+        - git
+        - wget
+        - httpd
+        - curl
+        - chrony

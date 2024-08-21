@@ -1,0 +1,25 @@
+---
+- name: Updating banner in sshd
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Add banner file in sshd service
+      copy:
+        content: "This {{ansible_distribution}} is managed by Ansible \n"
+        dest: /etc/motd
+    - name: "Update sshd config file"
+      become: yes
+      become_user: root
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "#Banner none"
+        line: "Banner /etc/motd"
+        state: present
+      notify:
+        Restart sshd service
+  handlers:
+    - name: Restart sshd service
+      service:
+        name: sshd
+        state: restarted
+        enabled: yes
